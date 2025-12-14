@@ -1,13 +1,470 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>rauankiarat-com</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio — Rauan Kairat" />
+  <title>Rauan Kairat | Portfolio</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101a2e;
+      --muted:#9fb0cc;
+      --text:#eaf0ff;
+      --line:rgba(255,255,255,.08);
+      --accent:#7aa6ff;
+      --accent2:#7dffbf;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 15% 10%, rgba(122,166,255,.25), transparent 55%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(125,255,191,.18), transparent 55%),
+                  linear-gradient(180deg, #070b14 0%, var(--bg) 40%, #060914 100%);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,11,20,.85), rgba(7,11,20,.45));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 24px;
+      max-width:var(--max); margin:0 auto;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
+      padding:8px 10px; border-radius:12px; color:var(--muted);
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:11px 14px; border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      box-shadow:none;
+    }
+    .btn:hover{border-color:rgba(122,166,255,.35); background:rgba(122,166,255,.08)}
+    .btn.primary{
+      border-color:transparent;
+      background:linear-gradient(135deg, rgba(122,166,255,.95), rgba(125,255,191,.85));
+      color:#061022;
+      font-weight:700;
+      box-shadow: 0 14px 34px rgba(122,166,255,.16);
+    }
+    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
+    .grid{
+      display:grid; gap:18px;
+    }
+    .hero{
+      padding:38px 0 16px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card.pad{padding:18px}
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(30px, 3.5vw, 46px);
+      line-height:1.1;
+      letter-spacing:-.6px;
+    }
+    .subtitle{color:var(--muted); font-size:15px; margin:0 0 16px}
+    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border:1px solid var(--line);
+      border-radius:999px; color:var(--muted);
+      background:rgba(255,255,255,.02);
+      font-size:13px;
+    }
+    .pill b{color:var(--text); font-weight:650}
+    .section{padding:22px 0}
+    .section h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .section p{margin:0; color:var(--muted)}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      margin-top:14px;
+    }
+    @media (max-width: 1000px){
+      .cards{grid-template-columns: repeat(2, 1fr);}
+    }
+    @media (max-width: 640px){
+      .cards{grid-template-columns: 1fr;}
+    }
+    .proj{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:220px;
+    }
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:rgba(255,255,255,.02);
+    }
+    .proj h3{margin:0; font-size:16px}
+    .proj p{margin:0; color:var(--muted); font-size:14px}
+    .proj .actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      margin-top:14px;
+    }
+    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
+    .list{
+      display:grid; gap:10px; margin-top:12px;
+    }
+    .item{
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.02);
+    }
+    .item .top{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .item .top b{font-weight:700}
+    .item small{color:var(--muted)}
+    footer{
+      padding:28px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      margin-top:20px;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .notice{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(122,166,255,.35);
+      background:rgba(122,166,255,.07);
+      color:var(--muted);
+      font-size:13px;
+    }
+    input, textarea{
+      width:100%;
+      border-radius:14px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .formrow{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 700px){ .formrow{grid-template-columns:1fr} }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Rauan Kairat</span>
+      </div>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="#" id="downloadResume">Download Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card pad">
+        <h1>Software Engineering student building practical products.</h1>
+        <p class="subtitle">
+          I build full-stack and 3D interactive apps (React, Three.js) and enjoy systems thinking,
+          clean architecture, and shipping real features.
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact Me</a>
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+
+        <div class="kpis">
+          <span class="pill"><b>NASA Space Apps</b> Global Nominee</span>
+          <span class="pill"><b>3D</b> React + Three.js</span>
+          <span class="pill"><b>Focus</b> Product + Systems</span>
+        </div>
+
+        <div style="margin-top:16px" class="notice">
+          Tip: Replace GitHub/LinkedIn links and project cards below with your real URLs.
+        </div>
+      </div>
+
+      <div class="card pad">
+        <h2 style="margin-top:0">Quick Profile</h2>
+        <div class="list">
+          <div class="item">
+            <div class="top"><b>Location</b> <small>Canada (BC)</small></div>
+          </div>
+          <div class="item">
+            <div class="top"><b>Stack</b> <small>React, Three.js, C/C++, Python, SQL</small></div>
+          </div>
+          <div class="item">
+            <div class="top"><b>Interests</b> <small>3D UI, health tech, embedded, data</small></div>
+          </div>
+          <div class="item">
+            <div class="top"><b>Open to</b> <small>Co-op / internships</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <p>Selected work. Each project card includes a short impact-focused summary.</p>
+
+      <div class="cards">
+        <article class="card proj">
+          <div class="tagrow">
+            <span class="tag">React</span><span class="tag">Three.js</span><span class="tag">3D Tool</span>
+          </div>
+          <h3>Space Habitat Builder</h3>
+          <p>
+            Interactive 3D tool to design space habitats with drag/move/rotate/resize controls and
+            real-time resource tracking.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Live Demo</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </article>
+
+        <article class="card proj">
+          <div class="tagrow">
+            <span class="tag">React</span><span class="tag">Game</span><span class="tag">UX</span>
+          </div>
+          <h3>Bridging Roots (Canoe Racing)</h3>
+          <p>
+            A lightweight 3D web game with strong UX and clear progression loops, built for fast iteration
+            and performance.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Live Demo</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Source</a>
+          </div>
+        </article>
+
+        <article class="card proj">
+          <div class="tagrow">
+            <span class="tag">App</span><span class="tag">Marketplace</span><span class="tag">Product</span>
+          </div>
+          <h3>Talaa Farming App</h3>
+          <p>
+            Marketplace concept for farmers: listings, equipment rental, and connecting specialists—designed
+            to support local communities.
+          </p>
+          <div class="actions">
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Case Study</a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="split">
+        <div class="card pad">
+          <p>
+            I’m a software engineering student focused on building reliable, user-friendly software.
+            I like problems where product thinking meets engineering fundamentals: architecture, data flow,
+            and performance.
+          </p>
+          <div class="kpis" style="margin-top:14px">
+            <span class="pill"><b>Languages</b> English, Russian, Kazakh</span>
+            <span class="pill"><b>Strengths</b> Iteration, ownership</span>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h2 style="margin-top:0">Skills</h2>
+          <div class="tagrow" style="margin-top:10px">
+            <span class="tag">React</span>
+            <span class="tag">Three.js</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <p>Highlights (edit these entries to match your resume).</p>
+
+      <div class="list">
+        <div class="item">
+          <div class="top">
+            <b>Window-Cleaning Robot Rental Service</b>
+            <small>Business Owner</small>
+          </div>
+          <small>Grew a small rental business, handled operations, customer support, and continuous improvement.</small>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <b>Insurance Internship (OJSC State Insurance Organization)</b>
+            <small>Jul 2023 – Aug 2023</small>
+          </div>
+          <small>Client consultations, contract management, and process understanding in a regulated environment.</small>
+        </div>
+
+        <div class="item">
+          <div class="top">
+            <b>NASA Space Apps Challenge</b>
+            <small>Oct 2025</small>
+          </div>
+          <small>Built an interactive 3D habitat design tool; nominated at the global level.</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Use this form as a template (it currently does not send email; it just drafts a message).</p>
+
+      <div class="split" style="align-items:start">
+        <div class="card pad">
+          <div class="formrow">
+            <div>
+              <label class="mono" for="name">Name</label>
+              <input id="name" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="mono" for="email">Email</label>
+              <input id="email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label class="mono" for="msg">Message</label>
+            <textarea id="msg" placeholder="Write your message..."></textarea>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px">
+            <button class="btn primary" id="copyMsg" type="button">Copy Message</button>
+            <a class="btn" id="mailLink" href="#">Open Email App</a>
+          </div>
+          <p style="margin:10px 0 0; color:var(--muted); font-size:13px">
+            To make this a real sending form, you’d connect a backend (e.g., Formspree, Netlify Forms, or your own API).
+          </p>
+        </div>
+
+        <div class="card pad">
+          <h2 style="margin-top:0">Links</h2>
+          <div class="list">
+            <div class="item"><div class="top"><b>GitHub</b> <small><a href="https://github.com/" target="_blank" rel="noreferrer">github.com/yourname</a></small></div></div>
+            <div class="item"><div class="top"><b>LinkedIn</b> <small><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></small></div></div>
+            <div class="item"><div class="top"><b>Email</b> <small><span class="mono">you@example.com</span></small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <span>© <span id="year"></span> Rauan Kairat</span>
+        <span class="mono">Built with plain HTML/CSS</span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // "Download Resume" placeholder
+    document.getElementById("downloadResume").addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Add your resume PDF file (e.g., resume.pdf) next to index.html, then change this button to link to it.");
+    });
+
+    // Contact helper: copy message + mailto
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const msgEl = document.getElementById("msg");
+    const mailLink = document.getElementById("mailLink");
+
+    function buildDraft(){
+      const name = (nameEl.value || "").trim();
+      const email = (emailEl.value || "").trim();
+      const msg = (msgEl.value || "").trim();
+      const lines = [
+        "Hello Rauan,",
+        "",
+        msg || "(Write your message here)",
+        "",
+        name ? `— ${name}` : "—",
+        email ? email : ""
+      ];
+      return lines.join("\n");
+    }
+
+    function updateMailto(){
+      const subject = encodeURIComponent("Portfolio Contact");
+      const body = encodeURIComponent(buildDraft());
+      // Replace this with your real email:
+      const to = "you@example.com";
+      mailLink.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    }
+
+    document.getElementById("copyMsg").addEventListener("click", () => {
+      const draft = buildDraft();
+      navigator.clipboard.writeText(draft).then(() => {
+        alert("Message copied to clipboard.");
+      });
+    });
+
+    [nameEl, emailEl, msgEl].forEach(el => el.addEventListener("input", updateMailto));
+    updateMailto();
+  </script>
+</body>
 </html>
