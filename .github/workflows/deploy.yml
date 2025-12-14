@@ -30,14 +30,14 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: github-portfolio/package-lock.json
+          cache-dependency-path: rauankiarat-com/package-lock.json
 
       - name: Install
-        working-directory: github-portfolio
+        working-directory: rauankiarat-com
         run: npm ci
 
       - name: Build
-        working-directory: github-portfolio
+        working-directory: rauankiarat-com
         run: npm run build
 
       - name: Configure Pages
@@ -46,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: github-portfolio/dist
+          path: rauankiarat-com/dist
 
       - name: Deploy
         id: deployment
