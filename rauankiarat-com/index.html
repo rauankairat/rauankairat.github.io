@@ -536,6 +536,13 @@
     .contact-item a:hover {
       border-bottom-color: #58ffc4;
     }
+    
+    
+
+    .btn.alt:hover,
+    .btn.alt:focus {
+    color: #ffffff;         /* white on hover or keyboard focus */
+    }
 
     /* Footer */
     footer {
@@ -596,23 +603,27 @@
           Software engineering student who builds full-stack apps and 3D experiences. 
           I care about clean code, good UX, and shipping features people actually use.
         </p>
+        <p>Gay </p>
+        <img src="lox.HEIC" alt="description" width="300" height="200">
+
         <div class="actions">
           <a href="#projects" class="btn">SEE MY WORK</a>
-          <a href="https://github.com/" class="btn alt" target="_blank">GITHUB</a>
-          <a href="https://linkedin.com/" class="btn alt" target="_blank">LINKEDIN</a>
+
+          <a href="https://github.com/rauankairat" class="btn alt" target="_blank">GITHUB</a>
+          <a href="https://www.linkedin.com/in/rkairat-seng/" class="btn alt" target="_blank">LINKEDIN</a>
         </div>
         <div class="tags">
           <span class="tag highlight">NASA Space Apps Nominee</span>
           <span class="tag">React + Three.js</span>
           <span class="tag">Systems Thinker</span>
+          
         </div>
-        <div class="notice-box">
-          Remember to update all the placeholder links with your actual GitHub, LinkedIn, and project URLs.
-        </div>
+       
       </div>
 
       <div class="stats-box">
         <div class="stat-item">
+          
           <div class="stat-label">Location</div>
           <div class="stat-value">Victoria, BC, Canada</div>
         </div>
@@ -650,24 +661,24 @@
             resource calculations. Built for NASA Space Apps Challenge.
           </p>
           <div class="project-links">
-            <a href="#" target="_blank">VIEW DEMO →</a>
-            <a href="#" target="_blank">SOURCE CODE →</a>
+            <a href="https://nasa-habitat-builder.vercel.app" target="_blank">VIEW DEMO →</a>
+            <a href="https://github.com/rauankairat/nasa-habitat-builder" target="_blank">SOURCE CODE →</a>
           </div>
         </div>
 
         <div class="project-card">
           <div class="project-tags">
-            <span class="project-tag">Game Dev</span>
-            <span class="project-tag">React</span>
-            <span class="project-tag">UX</span>
+            <span class="project-tag">Database</span>
+            <span class="project-tag">Pyhton</span>
+            <span class="project-tag">UI</span>
           </div>
-          <h3>Bridging Roots</h3>
+          <h3>PyQt6 Local Database</h3>
           <p>
-            3D canoe racing game with progression mechanics. Focused on performance optimization 
-            and tight controls. Fast iteration cycle for gameplay feel.
+            Built a PyQt6 desktop application with a local database for persistent 
+            data storage and basic CRUD operations through a graphical interface.
           </p>
           <div class="project-links">
-            <a href="#" target="_blank">PLAY GAME →</a>
+
             <a href="#" target="_blank">SOURCE CODE →</a>
           </div>
         </div>
@@ -803,23 +814,21 @@
               <a href="#" class="btn alt" id="mailBtn">OPEN EMAIL</a>
             </div>
           </form>
-          <div class="notice-box" style="margin-top: 25px;">
-            This form creates a draft email. To enable real sending, connect a backend like Formspree or Netlify Forms.
-          </div>
+          
         </div>
 
         <div class="contact-info">
           <div class="contact-item">
             <h3>GitHub</h3>
-            <a href="https://github.com/" target="_blank">github.com/yourname</a>
+            <a href="https://github.com/rauankairat" target="_blank">github.com</a>
           </div>
           <div class="contact-item">
             <h3>LinkedIn</h3>
-            <a href="https://linkedin.com/" target="_blank">linkedin.com/in/yourname</a>
+            <a href="https://www.linkedin.com/in/rkairat-seng/" target="_blank">linkedin.com</a>
           </div>
           <div class="contact-item">
             <h3>Email</h3>
-            <span style="color: #e8e8e8;">you@example.com</span>
+            <span style="color: #e8e8e8;">sengrauan@gmail.com</span>
           </div>
         </div>
       </div>
@@ -827,6 +836,7 @@
 
     <footer>
       <p>© <span id="year"></span> Rauan Kairat — Built without frameworks, just HTML/CSS/JS</p>
+      <p><a href = "https://github.com/rauankairat/rauankairat.github.io">See website code</a></p>
     </footer>
   </div>
 
@@ -849,7 +859,7 @@
     function updateMailto() {
       const subj = encodeURIComponent('Portfolio Contact');
       const body = encodeURIComponent(createDraft());
-      mailBtn.href = `mailto:you@example.com?subject=${subj}&body=${body}`;
+      mailBtn.href = `mailto:sengrauan@gmail.com?subject=${subj}&body=${body}`;
     }
 
     copyBtn.addEventListener('click', () => {
