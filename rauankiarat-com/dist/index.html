@@ -3,467 +3,880 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Portfolio — Rauan Kairat" />
-  <title>Rauan Kairat | Portfolio</title>
-
+  <title>Rauan Kairat</title>
+  <script src="hi.js"></script>
   <style>
-    :root{
-      --bg:#0b1220;
-      --card:#101a2e;
-      --muted:#9fb0cc;
-      --text:#eaf0ff;
-      --line:rgba(255,255,255,.08);
-      --accent:#7aa6ff;
-      --accent2:#7dffbf;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius:18px;
-      --max:1100px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Berkeley Mono', 'Courier New', monospace;
+      background: #0a0e27;
+      color: #e8e8e8;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(900px 500px at 15% 10%, rgba(122,166,255,.25), transparent 55%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(125,255,191,.18), transparent 55%),
-                  linear-gradient(180deg, #070b14 0%, var(--bg) 40%, #060914 100%);
-      color:var(--text);
-      line-height:1.5;
+
+    /* Chaotic grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(88, 255, 196, 0.03) 79px, rgba(88, 255, 196, 0.03) 80px),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255, 107, 237, 0.03) 79px, rgba(255, 107, 237, 0.03) 80px);
+      pointer-events: none;
+      z-index: 1;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(180deg, rgba(7,11,20,.85), rgba(7,11,20,.45));
-      border-bottom:1px solid var(--line);
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 2;
     }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:14px 24px;
-      max-width:var(--max); margin:0 auto;
+
+    /* Brutalist header */
+    header {
+      padding: 30px 0;
+      border-bottom: 4px solid #58ffc4;
+      margin-bottom: 60px;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
-    .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent2))}
-    .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
-    .navlinks a{
-      padding:8px 10px; border-radius:12px; color:var(--muted);
-      border:1px solid transparent;
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    .navlinks a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:11px 14px; border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      box-shadow:none;
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: -2px;
+      position: relative;
+      display: inline-block;
     }
-    .btn:hover{border-color:rgba(122,166,255,.35); background:rgba(122,166,255,.08)}
-    .btn.primary{
-      border-color:transparent;
-      background:linear-gradient(135deg, rgba(122,166,255,.95), rgba(125,255,191,.85));
-      color:#061022;
-      font-weight:700;
-      box-shadow: 0 14px 34px rgba(122,166,255,.16);
+
+    .logo::after {
+      content: '█';
+      color: #ff6bed;
+      animation: blink 1.2s infinite;
+      margin-left: 4px;
     }
-    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
-    .grid{
-      display:grid; gap:18px;
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
-    .hero{
-      padding:38px 0 16px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:22px;
-      align-items:stretch;
+
+    nav {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
     }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
+
+    nav a {
+      color: #a8a8a8;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.2s;
     }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
+
+    nav a:hover {
+      color: #58ffc4;
     }
-    .card.pad{padding:18px}
-    h1{
-      margin:0 0 10px;
-      font-size: clamp(30px, 3.5vw, 46px);
-      line-height:1.1;
-      letter-spacing:-.6px;
+
+    nav a::before {
+      content: '> ';
+      opacity: 0;
+      margin-right: -14px;
+      transition: all 0.2s;
     }
-    .subtitle{color:var(--muted); font-size:15px; margin:0 0 16px}
-    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px; border:1px solid var(--line);
-      border-radius:999px; color:var(--muted);
-      background:rgba(255,255,255,.02);
-      font-size:13px;
+
+    nav a:hover::before {
+      opacity: 1;
+      margin-right: 0;
     }
-    .pill b{color:var(--text); font-weight:650}
-    .section{padding:22px 0}
-    .section h2{
-      margin:0 0 10px;
-      font-size:18px;
-      letter-spacing:.2px;
+
+    /* Asymmetric hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 50px;
+      margin-bottom: 80px;
     }
-    .section p{margin:0; color:var(--muted)}
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-      margin-top:14px;
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
     }
-    @media (max-width: 1000px){
-      .cards{grid-template-columns: repeat(2, 1fr);}
+
+    h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.95;
+      margin-bottom: 25px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      color: #fff;
     }
-    @media (max-width: 640px){
-      .cards{grid-template-columns: 1fr;}
+
+    h1 span {
+      color: #58ffc4;
+      display: block;
+      font-style: italic;
     }
-    .proj{
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      min-height:220px;
+
+    .intro {
+      font-size: 19px;
+      color: #b4b4b4;
+      margin-bottom: 35px;
+      max-width: 600px;
     }
-    .tagrow{display:flex; gap:8px; flex-wrap:wrap}
-    .tag{
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      background:rgba(255,255,255,.02);
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
-    .proj h3{margin:0; font-size:16px}
-    .proj p{margin:0; color:var(--muted); font-size:14px}
-    .proj .actions{margin-top:auto; display:flex; gap:10px; flex-wrap:wrap}
-    .split{
-      display:grid;
+
+    .btn {
+      padding: 14px 28px;
+      background: transparent;
+      border: 3px solid #58ffc4;
+      color: #58ffc4;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: #58ffc4;
+      color: #0a0e27;
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 #ff6bed;
+    }
+
+    .btn.alt {
+      border-color: #ff6bed;
+      color: #ff6bed;
+    }
+
+    .btn.alt:hover {
+      background: #ff6bed;
+      box-shadow: 3px 3px 0 #58ffc4;
+    }
+
+    /* Weird stats box */
+    .stats-box {
+      background: linear-gradient(135deg, #1a1f3a 0%, #0f1228 100%);
+      border: 3px solid #58ffc4;
+      padding: 30px;
+      position: relative;
+    }
+
+    .stats-box::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 30px;
+      height: 30px;
+      background: #ff6bed;
+    }
+
+    .stat-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #2a2f4a;
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #ff6bed;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 16px;
+      color: #e8e8e8;
+    }
+
+    /* Tags with personality */
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .tag {
+      background: transparent;
+      border: 2px solid #2a2f4a;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: #a8a8a8;
+      position: relative;
+    }
+
+    .tag.highlight {
+      border-color: #ff6bed;
+      color: #ff6bed;
+    }
+
+    .tag.highlight::before {
+      content: '★';
+      margin-right: 6px;
+    }
+
+    /* Section headers with style */
+    section {
+      margin-bottom: 100px;
+    }
+
+    h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      letter-spacing: -2px;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #58ffc4 0%, #ff6bed 100%);
+    }
+
+    .section-intro {
+      font-size: 17px;
+      color: #b4b4b4;
+      margin-bottom: 50px;
+      max-width: 700px;
+    }
+
+    /* Project cards - asymmetric grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #12162e;
+      border: 3px solid #1a1f3a;
+      padding: 35px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: #58ffc4;
+      transform: translate(-4px, -4px);
+    }
+
+    .project-card:hover::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: -4px;
+      bottom: -4px;
+      border: 3px solid #ff6bed;
+      z-index: -1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      background: #1a1f3a;
+      color: #58ffc4;
+      padding: 5px 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+
+    .project-card p {
+      color: #b4b4b4;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-links a {
+      font-size: 14px;
+      color: #58ffc4;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .project-links a:hover {
+      border-bottom-color: #58ffc4;
+    }
+
+    /* About section - split layout */
+    .about-grid {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap:16px;
-      margin-top:14px;
+      gap: 50px;
     }
-    @media (max-width: 900px){ .split{grid-template-columns:1fr} }
-    .list{
-      display:grid; gap:10px; margin-top:12px;
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
     }
-    .item{
-      padding:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.02);
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #b4b4b4;
     }
-    .item .top{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
-    .item .top b{font-weight:700}
-    .item small{color:var(--muted)}
-    footer{
-      padding:28px 0 40px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      margin-top:20px;
+
+    .about-text strong {
+      color: #58ffc4;
+      font-weight: bold;
     }
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .notice{
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px dashed rgba(122,166,255,.35);
-      background:rgba(122,166,255,.07);
-      color:var(--muted);
-      font-size:13px;
+
+    .skills-list {
+      background: #12162e;
+      padding: 35px;
+      border-left: 6px solid #ff6bed;
     }
-    input, textarea{
-      width:100%;
-      border-radius:14px;
-      padding:12px 12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
-      color:var(--text);
-      outline:none;
+
+    .skill-category {
+      margin-bottom: 25px;
     }
-    textarea{min-height:110px; resize:vertical}
-    .formrow{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media (max-width: 700px){ .formrow{grid-template-columns:1fr} }
+
+    .skill-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-category h3 {
+      font-size: 14px;
+      color: #ff6bed;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      background: #1a1f3a;
+      padding: 8px 15px;
+      font-size: 14px;
+      color: #e8e8e8;
+    }
+
+    /* Experience timeline */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #58ffc4 0%, #ff6bed 100%);
+    }
+
+    .timeline-item {
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -47px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #58ffc4;
+      border: 3px solid #0a0e27;
+    }
+
+    .timeline-item h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .timeline-date {
+      font-size: 13px;
+      color: #ff6bed;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .timeline-item p {
+      color: #b4b4b4;
+      line-height: 1.7;
+    }
+
+    /* Contact form */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: #58ffc4;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: #12162e;
+      border: 2px solid #1a1f3a;
+      color: #e8e8e8;
+      padding: 15px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #58ffc4;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact-info {
+      background: #12162e;
+      padding: 35px;
+      border-top: 6px solid #58ffc4;
+    }
+
+    .contact-item {
+      margin-bottom: 25px;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-item h3 {
+      font-size: 14px;
+      color: #ff6bed;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .contact-item a {
+      color: #58ffc4;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-item a:hover {
+      border-bottom-color: #58ffc4;
+    }
+    
+    
+
+    .btn.alt:hover,
+    .btn.alt:focus {
+    color: #ffffff;         /* white on hover or keyboard focus */
+    }
+
+    /* Footer */
+    footer {
+      border-top: 3px solid #1a1f3a;
+      padding: 40px 0;
+      margin-top: 100px;
+      text-align: center;
+      color: #6a6a6a;
+      font-size: 14px;
+    }
+
+    .notice-box {
+      background: linear-gradient(135deg, rgba(255, 107, 237, 0.1) 0%, rgba(88, 255, 196, 0.1) 100%);
+      border: 2px dashed #ff6bed;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 15px;
+      color: #b4b4b4;
+    }
+
+    .notice-box::before {
+      content: '⚠ ';
+      color: #ff6bed;
+      font-size: 18px;
+      margin-right: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 32px; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Rauan Kairat</span>
+  <div class="container">
+    <header>
+      <div class="top-bar">
+        <div class="logo">RAUAN_KAIRAT</div>
+        <nav>
+          <a href="#projects">projects</a>
+          <a href="#about">about</a>
+          <a href="#experience">experience</a>
+          <a href="#contact">contact</a>
+        </nav>
       </div>
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <a class="btn" href="#" id="downloadResume">Download Resume</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap">
     <section class="hero">
-      <div class="card pad">
-        <h1>Software Engineering student building practical products.</h1>
-        <p class="subtitle">
-          I build full-stack and 3D interactive apps (React, Three.js) and enjoy systems thinking,
-          clean architecture, and shipping real features.
+      <div>
+        <h1>
+          Building stuff that
+          <span>actually works.</span>
+        </h1>
+        <p class="intro">
+          Software engineering student who builds full-stack apps and 3D experiences. 
+          I care about clean code, good UX, and shipping features people actually use.
         </p>
 
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact Me</a>
-          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
 
-        <div class="kpis">
-          <span class="pill"><b>NASA Space Apps</b> Global Nominee</span>
-          <span class="pill"><b>3D</b> React + Three.js</span>
-          <span class="pill"><b>Focus</b> Product + Systems</span>
-        </div>
 
-        <div style="margin-top:16px" class="notice">
-          Tip: Replace GitHub/LinkedIn links and project cards below with your real URLs.
+        <div class="actions">
+          <a href="#projects" class="btn">SEE MY WORK</a>
+
+          <a href="https://github.com/rauankairat" class="btn alt" target="_blank">GITHUB</a>
+          <a href="https://www.linkedin.com/in/rkairat-seng/" class="btn alt" target="_blank">LINKEDIN</a>
+          <a href="/assets/resume.pdf" download="" class="btn alt" target="_blank"> Download Resume</a>
         </div>
+        <div class="tags">
+          <span class="tag highlight">NASA Space Apps Nominee</span>
+          <span class="tag">React + Three.js</span>
+          <span class="tag">Systems Thinker</span>
+          
+        </div>
+       
       </div>
 
-      <div class="card pad">
-        <h2 style="margin-top:0">Quick Profile</h2>
-        <div class="list">
-          <div class="item">
-            <div class="top"><b>Location</b> <small>Canada (BC)</small></div>
-          </div>
-          <div class="item">
-            <div class="top"><b>Stack</b> <small>React, Three.js, C/C++, Python, SQL</small></div>
-          </div>
-          <div class="item">
-            <div class="top"><b>Interests</b> <small>3D UI, health tech, embedded, data</small></div>
-          </div>
-          <div class="item">
-            <div class="top"><b>Open to</b> <small>Co-op / internships</small></div>
-          </div>
+      <div class="stats-box">
+        <div class="stat-item">
+          
+          <div class="stat-label">Location</div>
+          <div class="stat-value">Victoria, BC, Canada</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Primary Stack</div>
+          <div class="stat-value">React, Three.js, C/C++</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Interests</div>
+          <div class="stat-value">3D UI, Health Tech, Embedded Systems</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Status</div>
+          <div class="stat-value">Open for co-op opportunities</div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <p>Selected work. Each project card includes a short impact-focused summary.</p>
+    <section id="projects">
+      <h2>Selected Work</h2>
+      <p class="section-intro">
+        Projects where I learned something new or solved an interesting problem. Mix of 3D tools, games, and product concepts.
+      </p>
 
-      <div class="cards">
-        <article class="card proj">
-          <div class="tagrow">
-            <span class="tag">React</span><span class="tag">Three.js</span><span class="tag">3D Tool</span>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Three.js</span>
+            <span class="project-tag">WebGL</span>
           </div>
           <h3>Space Habitat Builder</h3>
           <p>
-            Interactive 3D tool to design space habitats with drag/move/rotate/resize controls and
-            real-time resource tracking.
+            Interactive 3D design tool for space habitats. Drag, rotate, resize modules with real-time 
+            resource calculations. Built for NASA Space Apps Challenge.
           </p>
-          <div class="actions">
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Live Demo</a>
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Source</a>
-          </div>
-        </article>
+          <div class="project-links">
+            <a href="https://nasa-habitat-builder.vercel.app" target="_blank">VIEW DEMO →</a>
+            <a href="hi.html" target="_blank">VIEW DEMO →</a>
 
-        <article class="card proj">
-          <div class="tagrow">
-            <span class="tag">React</span><span class="tag">Game</span><span class="tag">UX</span>
+            <a href="https://github.com/rauankairat/nasa-habitat-builder" target="_blank">SOURCE CODE →</a>
           </div>
-          <h3>Bridging Roots (Canoe Racing)</h3>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tags">
+            <span class="project-tag">Database</span>
+            <span class="project-tag">Pyhton</span>
+            <span class="project-tag">UI</span>
+          </div>
+          <h3>PyQt6 Local Database</h3>
           <p>
-            A lightweight 3D web game with strong UX and clear progression loops, built for fast iteration
-            and performance.
+            Built a PyQt6 desktop application with a local database for persistent 
+            data storage and basic CRUD operations through a graphical interface.
           </p>
-          <div class="actions">
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Live Demo</a>
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Source</a>
-          </div>
-        </article>
+          <div class="project-links">
 
-        <article class="card proj">
-          <div class="tagrow">
-            <span class="tag">App</span><span class="tag">Marketplace</span><span class="tag">Product</span>
+            <a href="#" target="_blank">SOURCE CODE →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-tags">
+            <span class="project-tag">Product</span>
+            <span class="project-tag">Marketplace</span>
+            <span class="project-tag">UI/UX</span>
           </div>
           <h3>Talaa Farming App</h3>
           <p>
-            Marketplace concept for farmers: listings, equipment rental, and connecting specialists—designed
-            to support local communities.
+            Marketplace concept connecting farmers with equipment and specialists. 
+            Designed around real community needs and local agriculture workflows.
           </p>
-          <div class="actions">
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Case Study</a>
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Repo</a>
+          <div class="project-links">
+            <a href="#" target="_blank">CASE STUDY →</a>
+            <a href="#" target="_blank">REPOSITORY →</a>
           </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <div class="split">
-        <div class="card pad">
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p style="margin-bottom: 20px;">
+            I'm studying software engineering and building projects that solve real problems. 
+            What interests me most is the intersection of <strong>product thinking</strong> and 
+            <strong>solid engineering</strong> — understanding what users need and building it cleanly.
+          </p>
+          <p style="margin-bottom: 20px;">
+            I like working on 3D visualizations, interactive tools, and systems where architecture matters. 
+            Currently exploring WebGL, game mechanics, and health tech applications.
+          </p>
           <p>
-            I’m a software engineering student focused on building reliable, user-friendly software.
-            I like problems where product thinking meets engineering fundamentals: architecture, data flow,
-            and performance.
+            Speak English, Russian, and Kazakh. Believer in iteration, ownership, and shipping early.
           </p>
-          <div class="kpis" style="margin-top:14px">
-            <span class="pill"><b>Languages</b> English, Russian, Kazakh</span>
-            <span class="pill"><b>Strengths</b> Iteration, ownership</span>
-          </div>
         </div>
 
-        <div class="card pad">
-          <h2 style="margin-top:0">Skills</h2>
-          <div class="tagrow" style="margin-top:10px">
-            <span class="tag">React</span>
-            <span class="tag">Three.js</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">C/C++</span>
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Git</span>
+        <div class="skills-list">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skill-items">
+              <span class="skill">React</span>
+              <span class="skill">Three.js</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Backend & Systems</h3>
+            <div class="skill-items">
+              <span class="skill">C/C++</span>
+              <span class="skill">Python</span>
+              <span class="skill">SQL</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Tools</h3>
+            <div class="skill-items">
+              <span class="skill">Git</span>
+              <span class="skill">Linux</span>
+              <span class="skill">VS Code</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience">
       <h2>Experience</h2>
-      <p>Highlights (edit these entries to match your resume).</p>
+      <p class="section-intro">
+        Things I've done that taught me something valuable about building, shipping, and maintaining software.
+      </p>
 
-      <div class="list">
-        <div class="item">
-          <div class="top">
-            <b>Window-Cleaning Robot Rental Service</b>
-            <small>Business Owner</small>
-          </div>
-          <small>Grew a small rental business, handled operations, customer support, and continuous improvement.</small>
-        </div>
-
-        <div class="item">
-          <div class="top">
-            <b>Insurance Internship (OJSC State Insurance Organization)</b>
-            <small>Jul 2023 – Aug 2023</small>
-          </div>
-          <small>Client consultations, contract management, and process understanding in a regulated environment.</small>
-        </div>
-
-        <div class="item">
-          <div class="top">
-            <b>NASA Space Apps Challenge</b>
-            <small>Oct 2025</small>
-          </div>
-          <small>Built an interactive 3D habitat design tool; nominated at the global level.</small>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Use this form as a template (it currently does not send email; it just drafts a message).</p>
-
-      <div class="split" style="align-items:start">
-        <div class="card pad">
-          <div class="formrow">
-            <div>
-              <label class="mono" for="name">Name</label>
-              <input id="name" placeholder="Your name" />
-            </div>
-            <div>
-              <label class="mono" for="email">Email</label>
-              <input id="email" placeholder="you@example.com" />
-            </div>
-          </div>
-          <div style="margin-top:12px">
-            <label class="mono" for="msg">Message</label>
-            <textarea id="msg" placeholder="Write your message..."></textarea>
-          </div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px">
-            <button class="btn primary" id="copyMsg" type="button">Copy Message</button>
-            <a class="btn" id="mailLink" href="#">Open Email App</a>
-          </div>
-          <p style="margin:10px 0 0; color:var(--muted); font-size:13px">
-            To make this a real sending form, you’d connect a backend (e.g., Formspree, Netlify Forms, or your own API).
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>NASA Space Apps Challenge</h3>
+          <div class="timeline-date">October 2025</div>
+          <p>
+            Built an interactive 3D habitat design tool in 48 hours. Implemented drag-and-drop module 
+            placement, real-time resource calculations, and export functionality. Project was nominated 
+            at the global level.
           </p>
         </div>
 
-        <div class="card pad">
-          <h2 style="margin-top:0">Links</h2>
-          <div class="list">
-            <div class="item"><div class="top"><b>GitHub</b> <small><a href="https://github.com/" target="_blank" rel="noreferrer">github.com/yourname</a></small></div></div>
-            <div class="item"><div class="top"><b>LinkedIn</b> <small><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></small></div></div>
-            <div class="item"><div class="top"><b>Email</b> <small><span class="mono">you@example.com</span></small></div></div>
+        <div class="timeline-item">
+          <h3>Window-Cleaning Robot Rental</h3>
+          <div class="timeline-date">Business Owner</div>
+          <p>
+            Started and grew a small rental business. Handled everything from operations to customer 
+            support to process improvements. Learned about reliability, customer communication, and 
+            continuous iteration.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Insurance Internship</h3>
+          <div class="timeline-date">Jul 2023 – Aug 2023</div>
+          <p>
+            Client consultations and contract management at OJSC State Insurance Organization. 
+            Got exposure to regulated environments, documentation standards, and B2B processes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <p class="section-intro">
+        Working on something interesting? Looking for a co-op student? Let's talk.
+      </p>
+
+      <div class="contact-grid">
+        <div>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="Jane Smith" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="jane@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div style="display: flex; gap: 15px;">
+              <button type="button" class="btn" id="copyBtn">COPY MESSAGE</button>
+              <a href="#" class="btn alt" id="mailBtn">OPEN EMAIL</a>
+            </div>
+          </form>
+          
+        </div>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>GitHub</h3>
+            <a href="https://github.com/rauankairat" target="_blank">github.com</a>
+          </div>
+          <div class="contact-item">
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/rkairat-seng/" target="_blank">linkedin.com</a>
+          </div>
+          <div class="contact-item">
+            <h3>Email</h3>
+            <span style="color: #e8e8e8;">sengrauan@gmail.com</span>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="wrap">
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <span>© <span id="year"></span> Rauan Kairat</span>
-        <span class="mono">Built with plain HTML/CSS</span>
-      </div>
+    <footer>
+      <p>© <span id="year"></span> Rauan Kairat — Built without frameworks, just HTML/CSS/JS</p>
+      <p><a href = "https://github.com/rauankairat/rauankairat.github.io">See website code</a></p>
     </footer>
-  </main>
+  </div>
 
   <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // "Download Resume" placeholder
-    document.getElementById("downloadResume").addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Add your resume PDF file (e.g., resume.pdf) next to index.html, then change this button to link to it.");
-    });
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const mailBtn = document.getElementById('mailBtn');
+    const copyBtn = document.getElementById('copyBtn');
 
-    // Contact helper: copy message + mailto
-    const nameEl = document.getElementById("name");
-    const emailEl = document.getElementById("email");
-    const msgEl = document.getElementById("msg");
-    const mailLink = document.getElementById("mailLink");
-
-    function buildDraft(){
-      const name = (nameEl.value || "").trim();
-      const email = (emailEl.value || "").trim();
-      const msg = (msgEl.value || "").trim();
-      const lines = [
-        "Hello Rauan,",
-        "",
-        msg || "(Write your message here)",
-        "",
-        name ? `— ${name}` : "—",
-        email ? email : ""
-      ];
-      return lines.join("\n");
+    function createDraft() {
+      const n = nameInput.value.trim() || 'Someone';
+      const e = emailInput.value.trim() || '';
+      const m = messageInput.value.trim() || '(No message provided)';
+      return `Hey Rauan,\n\n${m}\n\nBest,\n${n}\n${e}`;
     }
 
-    function updateMailto(){
-      const subject = encodeURIComponent("Portfolio Contact");
-      const body = encodeURIComponent(buildDraft());
-      // Replace this with your real email:
-      const to = "you@example.com";
-      mailLink.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    function updateMailto() {
+      const subj = encodeURIComponent('Portfolio Contact');
+      const body = encodeURIComponent(createDraft());
+      mailBtn.href = `mailto:sengrauan@gmail.com?subject=${subj}&body=${body}`;
     }
 
-    document.getElementById("copyMsg").addEventListener("click", () => {
-      const draft = buildDraft();
-      navigator.clipboard.writeText(draft).then(() => {
-        alert("Message copied to clipboard.");
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(createDraft()).then(() => {
+        copyBtn.textContent = 'COPIED!';
+        setTimeout(() => copyBtn.textContent = 'COPY MESSAGE', 2000);
       });
     });
 
-    [nameEl, emailEl, msgEl].forEach(el => el.addEventListener("input", updateMailto));
+    [nameInput, emailInput, messageInput].forEach(el => {
+      el.addEventListener('input', updateMailto);
+    });
+    
     updateMailto();
   </script>
 </body>
